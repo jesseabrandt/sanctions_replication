@@ -1,0 +1,45 @@
+---
+title: "Initial Report"
+format: pdf
+---
+
+# Replicating "Effects of international sanctions on age-specific mortality: a cross-national panel data analysis"
+```{r}
+#load packages
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(haven)
+```
+
+## Load Data
+```{r}
+#from stata - use haven package
+df1 <- read_dta("data/mortality1_r-1.dta")
+df2 <- read_dta("data/un_single_age_life_t.dta")
+```
+
+## Quick Summary
+replicate their summary tables later
+```{r}
+head(df1)
+dim(df1)
+head(df2)
+dim(df2)
+summary(df1)
+summary(df2)
+```
+
+## View column labels
+Several columns are labeled with variable descriptions
+```{r}
+#get labels
+df1_labels <- lapply(df1, function(x) attributes(x)$label)
+df2_labels <- lapply(df2, function(x) attributes(x)$label)
+
+#print non-null labels
+print("DF1 Labels:")
+print(df1_labels[!sapply(df1_labels, is.null)])
+
+print("DF2 Labels:")
+print(df2_labels[!sapply(df2_labels, is.null)])
+```
+
